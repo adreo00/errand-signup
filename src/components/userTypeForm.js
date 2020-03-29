@@ -51,9 +51,10 @@ const UserTypeForm = props => {
             <Grid item xs={12} sm={6}>
                 <TextField
                     id="email"
-                    name="email "
+                    name="email"
                     value={email}
                     label="Email"
+                    required
                     fullWidth
                     onChange={props.handleChange}
                     autoComplete="email"

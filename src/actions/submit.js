@@ -1,17 +1,37 @@
-// import { axios } from "axios"
+// import Amplify, { Analytics, Storage, API } from "aws-amplify"
+import AWS from "aws-sdk"
 
-// axios.request
+// import awsconfig from "../aws-exports"
 
-import awsconfig from "./aws-exports"
+const marshall = AWS.DynamoDB.Converter.marshall
+const putItem = (table_name, item) => {
+    const dynamoItem = marshall(item)
+    let ddb = new AWS.DynamoDB()
 
-Amplify.configure(awsconfig)
-import Amplify, { Analytics, Storage, API } from "aws-amplify"
+    var params = {
+        RequestItems: {
+            [table_name]: [
+                {
+                    PutRequest: {
+                        Item: dynamoItem,
+                    },
+                },
+            ],
+        },
+    }
 
-// Configure Amplify
-API.configure(awsconfig)
-Storage.configure(awsconfig)
+    ddb.batchWriteItem(params, function(err, data) {
+        if (err) {
+            console.log("Error", err)
+        } else {
+            console.log("Success", data)
+        }
+    })
+}
+// Amplify.configure(awsconfig)
 
-var dynamodb = new AWS.DynamoDB()
-Storage.put()
+// API.configure(awsconfig)
+// Storage.configure(awsconfig)
+// Storage.put()
 
-export default submit
+export default putItem
