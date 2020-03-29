@@ -1,0 +1,5 @@
+{
+    "tableName": "covidDB",
+    "partitionKeyName": "email",
+    "partitionKeyType": "S"
+}

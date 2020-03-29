@@ -1,0 +1,8 @@
+{
+	"storage": {
+		"covidDB": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}
