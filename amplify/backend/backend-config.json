@@ -4,5 +4,6 @@
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		}
-	}
+	},
+	"api": {}
 }

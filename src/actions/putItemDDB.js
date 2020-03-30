@@ -1,12 +1,13 @@
 // import Amplify, { Analytics, Storage, API } from "aws-amplify"
 import AWS from "aws-sdk"
+import config from "../secrets/config"
 
 // import awsconfig from "../aws-exports"
 
 const marshall = AWS.DynamoDB.Converter.marshall
-const putItem = (table_name, item) => {
+const putItemDDB = (table_name, item) => {
     const dynamoItem = marshall(item)
-    let ddb = new AWS.DynamoDB()
+    let ddb = new AWS.DynamoDB(config)
 
     var params = {
         RequestItems: {
@@ -19,19 +20,16 @@ const putItem = (table_name, item) => {
             ],
         },
     }
-
-    ddb.batchWriteItem(params, function(err, data) {
-        if (err) {
+    const sendRequest = async params => {
+        try {
+            const resp = await ddb.batchWriteItem(params).promise()
+            console.log("Success", resp)
+        } catch (err) {
             console.log("Error", err)
-        } else {
-            console.log("Success", data)
         }
-    })
+    }
+
+    sendRequest(params)
 }
-// Amplify.configure(awsconfig)
 
-// API.configure(awsconfig)
-// Storage.configure(awsconfig)
-// Storage.put()
-
-export default putItem
+export default putItemDDB

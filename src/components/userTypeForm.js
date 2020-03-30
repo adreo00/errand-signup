@@ -21,7 +21,7 @@ const styles = theme => ({
 const UserTypeForm = props => {
     const { classes } = props
     const { volunteer, requester, firstName, lastName, email } = props
-    const error = [volunteer, requester].filter(n => n).length < 1
+    const checkBoxError = [volunteer, requester].filter(n => n).length < 1
 
     return (
         <Grid container spacing={3}>
@@ -61,8 +61,12 @@ const UserTypeForm = props => {
                 />
             </Grid>
 
-            <Box className={classes.boxPadding}>
-                <FormControl required error={error} component="fieldset">
+            <Grid className={classes.boxPadding}>
+                <FormControl
+                    required
+                    error={checkBoxError}
+                    component="fieldset"
+                >
                     <FormLabel>What type of user are you?</FormLabel>
                     <FormGroup>
                         <FormControlLabel
@@ -87,7 +91,7 @@ const UserTypeForm = props => {
                         />
                     </FormGroup>
                 </FormControl>
-            </Box>
+            </Grid>
         </Grid>
     )
 }
