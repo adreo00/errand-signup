@@ -11,6 +11,7 @@ import {
     TextField,
 } from "@material-ui/core"
 import { withStyles } from "@material-ui/core/styles"
+import HoverTooltip from "./HoverTooltip"
 
 const styles = theme => ({
     boxPadding: {
@@ -38,15 +39,17 @@ const UserTypeForm = props => {
                 />
             </Grid>
             <Grid item xs={12} sm={6}>
-                <TextField
-                    id="lastName"
-                    name="lastName"
-                    value={lastName}
-                    label="Last name"
-                    fullWidth
-                    onChange={props.handleChange}
-                    autoComplete="lname"
-                />
+                <HoverTooltip title="If not absolutely necessary, users are encouraged not to supply last name for their own privacy.">
+                    <TextField
+                        id="lastName"
+                        name="lastName"
+                        value={lastName}
+                        label="Last name"
+                        fullWidth
+                        onChange={props.handleChange}
+                        autoComplete="lname"
+                    />
+                </HoverTooltip>
             </Grid>
             <Grid item xs={12} sm={6}>
                 <TextField

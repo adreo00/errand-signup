@@ -4,15 +4,8 @@ import Typography from "@material-ui/core/Typography"
 import TextField from "@material-ui/core/TextField"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
-import { Button, Tooltip } from "@material-ui/core"
 
-const HoverTooltip = props => {
-    return (
-        <Tooltip title={props.title} disableFocusListener>
-            {props.children}
-        </Tooltip>
-    )
-}
+import HoverTooltip from "./HoverTooltip"
 
 export default function AddressForm(props) {
     const { address1, address2, city, state, zip, country } = props

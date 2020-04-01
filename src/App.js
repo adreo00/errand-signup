@@ -1,11 +1,32 @@
 import React from "react"
-// import { Button } from "@material-ui/core"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import Register from "./components/register"
-import AddressForm from "./components/addressForm"
+import Page from "./components/page"
+import Header from "./components/HeaderComponent"
+import RegisterForm from "./components/register"
+import ViewForm from "./ViewForm"
+import NotFoundForm from "./components/NotFound"
 
 function App() {
-    return <Register />
+    const [state, setState] = React.useState({
+        title: "Register",
+    })
+
+    return (
+        <Router>
+            <div>
+                <Header headerName={state.title} />
+                <Switch>
+                    <Route exact path="/" component={RegisterForm} />
+                    <Route path="/register" component={RegisterForm} />
+                    <Route path="/view" component={ViewForm} />
+                    <Route component={NotFoundForm} />
+                    {/* <RegisterForm /> */}
+                    {/* TODO: Add Footer here */}
+                </Switch>
+            </div>
+        </Router>
+    )
 }
 
 export default App

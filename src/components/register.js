@@ -38,9 +38,6 @@ const RegisterForm = () => {
             <Alert severity="info">
                 Your personal data will not be shared.
             </Alert>
-            <Typography variant="h6" gutterBottom>
-                Sign-up
-            </Typography>
             {/* <Typography variant="span" gutterBottom></Typography> */}
             <Container>
                 <form onSubmit={handleSubmit}>
