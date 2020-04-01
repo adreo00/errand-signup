@@ -21,15 +21,17 @@ const putItemDDB = (table_name, item) => {
         },
     }
     const sendRequest = async params => {
+        let httpResponse
         try {
             const resp = await ddb.batchWriteItem(params).promise()
             console.log("Success", resp)
+            return resp.$response.httpResponse.statusCode
         } catch (err) {
             console.log("Error", err)
         }
     }
 
-    sendRequest(params)
+    return sendRequest(params)
 }
 
 export default putItemDDB

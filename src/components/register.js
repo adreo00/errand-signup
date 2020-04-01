@@ -17,11 +17,12 @@ const RegisterForm = () => {
         address2: "",
         city: "",
         state: "",
+        response: null,
     })
     const handleSubmit = event => {
         event.preventDefault()
-        putItem("covidDB-dev", state)
-        console.log("Submitted!")
+        const response = putItem("covidDB-dev", state)
+        setState({ ...state, response: response })
     }
 
     const handleChange = event => {
