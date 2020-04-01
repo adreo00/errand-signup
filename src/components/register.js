@@ -4,7 +4,7 @@ import Alert from "@material-ui/lab/Alert"
 
 import UserTypeForm from "./userTypeForm"
 import AddressForm from "./addressForm"
-import handleSubmit from "../actions/submit"
+import putItem from "../actions/putItemDDB"
 
 const RegisterForm = () => {
     const [state, setState] = React.useState({
@@ -18,6 +18,11 @@ const RegisterForm = () => {
         city: "",
         state: "",
     })
+    const handleSubmit = event => {
+        event.preventDefault()
+        putItem("covidDB-dev", state)
+        console.log("Submitted!")
+    }
 
     const handleChange = event => {
         const { target } = event
